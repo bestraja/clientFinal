@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import SignupImage from "../asset/login-animation.gif";
 import { BiShow, BiHide } from "react-icons/bi";
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 
 function Signup() {
+    const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const handleShowPassword = () => {
         setShowPassword(prev => !prev);
@@ -20,6 +21,7 @@ function Signup() {
         email: "",
         password: "",
         confirmPassword: "",
+        image:"",
     });
 
     console.log(data);
@@ -40,6 +42,7 @@ function Signup() {
             if(password === confirmPassword)
             {
             alert('succefuly');
+            navigate("/login");
             }
         
         else {
@@ -52,11 +55,29 @@ function Signup() {
         alert('Please insert correct information');
     }
      }
+     const handleUploadProfileImage = async(e)=>{
+        const data = await ImagetoBase64(e.target.files[0])
+    
+  
+        setData((preve)=>{
+            return{
+              ...preve,
+              image : data
+            }
+        })
+  
+    }
     return (
         <div className="p-3 md:p-4">
             <div className="w-full max-w-sm bg-white m-auto flex flex-col p-4">
                 <div className='w-20 h-20 overflow-hidden rounded-full drop-shadow-md shadow-md m-auto relative'>
                     <img src={SignupImage} className="w-full h-full" alt='' />
+                    <label htmlFor="profileImage">
+            <div className="absolute bottom-0 h-1/3  bg-slate-500 bg-opacity-50 w-full text-center cursor-pointer">
+              <p className="text-sm p-1 text-white">Upload</p>
+            </div>
+            <input type={"file"} id="profileImage" accept="image/*" className="hidden" onChange={handleUploadProfileImage}/>
+          </label>
                 </div>
                 <form onSubmit={handlsubmit} className="w-full py-3 flex flex-col">
                     <label htmlFor="firstname">First Name</label>
@@ -119,12 +140,7 @@ function Signup() {
                         </span>
                     </div>
 
-                    <button
-                        type='submit'
-                        className="w-full max-w-[100px] m-auto bg-orange-500 hover:bg-red-600 cursor-pointer text-white text-xl font-medium text-center py-1 rounded-full mt-4"
-                    >
-                        Sign up
-                    </button>
+                    <button type="submit" className="text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Signup</button>
                 </form>
                 <p className='text-left text-sm mt-2'>
                     Already have an account?

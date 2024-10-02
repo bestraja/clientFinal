@@ -12,7 +12,8 @@ function App() {
           <Outlet />
         </main>
       </div>
-  
+     
+      
     </>
   );
 }

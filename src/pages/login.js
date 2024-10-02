@@ -10,17 +10,13 @@ function Login()
         setShowPassword(prev => !prev);
     };
 
-    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-    const handleShowConfirmPassword = () => {
-        setShowConfirmPassword(prev => !prev);
-    };
+   
 
     const [data, setData] = useState({
-        firstname: "",
-        lastname: "",
+        
         email: "",
         password: "",
-        confirmPassword: "",
+       
     });
 
     console.log(data);
@@ -35,19 +31,11 @@ function Login()
     const handlsubmit = async (e) =>
      {
         e.preventDefault()
-        const { firstname, lastname, email, password, confirmPassword } = data;
-        if (firstname && lastname && email && password && confirmPassword) 
-        {
-            if(password === confirmPassword)
-            {
+        const {  email, password } = data;
+        if ( email && password ) 
+        {     
             alert('succefuly');
-            }
-        
-        else {
-
-            alert('bad creditel');
-        }
-    }
+          }
     else
     {
         alert('Please insert correct information');
@@ -59,6 +47,7 @@ function Login()
         <div className='w-20 h-20 overflow-hidden rounded-full drop-shadow-md shadow-md m-auto relative'>
             <img src={SignupImage} className="w-full h-full" alt='' />
         </div>
+        <h2 className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-orange-400 pt-7 text-center text-3xl font-bold">Welcom </h2>
         <form onSubmit={handlsubmit} className="w-full py-3 flex flex-col">
            
            
@@ -87,16 +76,12 @@ function Login()
                 </span>
             </div>
 
-            <button
-                type='submit'
-     className="w-full max-w-[100px] m-auto bg-orange-500 hover:bg-red-600 cursor-pointer text-white text-xl font-medium text-center py-1 rounded-full mt-4"
-            >
-               Login
-            </button>
+            <button type="submit" className="text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Login</button>
+
         </form>
         <p className='text-left text-sm mt-2'>
-        Don't  have account ?
-            <Link to="/login" className="text-red-500 underline">Login</Link>
+        Don't  have account ?{""}
+            <Link to="/signup" className="text-red-500 underline">Signup</Link>
         </p>
     </div>
 </div>
