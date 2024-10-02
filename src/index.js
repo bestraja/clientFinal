@@ -10,7 +10,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Login from './pages/login';
 import Newproduct from './pages/Newproduct';
-import Signout from './pages/Signout';
+import Signup from './pages/Signup';
 
 
 
@@ -24,7 +24,7 @@ const router = createBrowserRouter(createRoutesFromElements(
    <Route path="contact" element={<Contact/>} />
    <Route path="login" element={<Login/>} />
    <Route path="newproduct" element={<Newproduct/>} />
-   <Route path ="signout" element={<Signout/>}/>
+   <Route path="signup" element={<Signup />} />
   </Route>
 ));
 const root = ReactDOM.createRoot(document.getElementById('root'));
