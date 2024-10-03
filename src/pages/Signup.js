@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import SignupImage from "../asset/login-animation.gif";
 import { BiShow, BiHide } from "react-icons/bi";
 import { Link,useNavigate } from 'react-router-dom';
-
+import { ImagetoBase64 } from "../utility/ImagetoBase64";
 function Signup() {
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
@@ -25,7 +25,18 @@ function Signup() {
     });
 
     console.log(data);
-
+    const handleUploadProfileImage = async(e)=>{
+        const data = await ImagetoBase64(e.target.files[0])
+     console.log(data)
+  
+        setData((preve)=>{
+            return{
+              ...preve,
+              image : data
+            }
+        })
+  
+    }
     const handleOnChange = (e) => {
         const { name, value } = e.target;
         setData(prev => ({
@@ -55,23 +66,12 @@ function Signup() {
         alert('Please insert correct information');
     }
      }
-     const handleUploadProfileImage = async(e)=>{
-        const data = await ImagetoBase64(e.target.files[0])
-    
-  
-        setData((preve)=>{
-            return{
-              ...preve,
-              image : data
-            }
-        })
-  
-    }
+     
     return (
         <div className="p-3 md:p-4">
             <div className="w-full max-w-sm bg-white m-auto flex flex-col p-4">
                 <div className='w-20 h-20 overflow-hidden rounded-full drop-shadow-md shadow-md m-auto relative'>
-                    <img src={SignupImage} className="w-full h-full" alt='' />
+                    <img  src={data.image ? data.image :  SignupImage} className="w-full h-full" alt='' />
                     <label htmlFor="profileImage">
             <div className="absolute bottom-0 h-1/3  bg-slate-500 bg-opacity-50 w-full text-center cursor-pointer">
               <p className="text-sm p-1 text-white">Upload</p>
