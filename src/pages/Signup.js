@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import SignupImage from "../asset/login-animation.gif";
 import { BiShow, BiHide } from "react-icons/bi";
-import { Link } from 'react-router-dom';
-import { ImagetoBase64 } from "../utility/ImagetoBase64";
+import { Link,useNavigate  } from 'react-router-dom';
+
 
 function Signup()
  {
-   // const navigate = useNavigate();
+   const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const handleShowPassword = () => setShowPassword(prev => !prev);
 
@@ -23,11 +23,16 @@ function Signup()
         file: "",
     });
 
-    const [img, setimg] = useState();
+    const [img, setimg] = useState(SignupImage);
 
     const handleOnChange = (e) => {
         const { name, value } = e.target;
         setData(prev => ({ ...prev, [name]: value }));
+    };
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        setimg(URL.createObjectURL(file)); // Create a URL for the uploaded image
+        setData(prev => ({ ...prev, file })); // Store the file if needed
     };
     console.log("Server URL:", process.env.REACT_APP_SERVER_DOMIN);
     const handleSubmit = async(e) => {
@@ -38,12 +43,13 @@ function Signup()
         datasignup.append("email", Data.email);
         datasignup.append("password", Data.password);
         datasignup.append("confirmPassword", Data.confirmPassword);
-            datasignup.append("file", img);
+            datasignup.append("file", Data.file);
         
 
         console.log(Data)
              const res = await  axios.post("http://localhost:5050/api/user/signup",datasignup)
              console.log(res)
+             navigate("/login");
       };
     return (
         <div className="p-3 md:p-4">
@@ -54,7 +60,7 @@ function Signup()
                         <div className="absolute bottom-0 h-1/3 bg-slate-500 bg-opacity-50 w-full text-center cursor-pointer">
                             <p className="text-sm p-1 text-white">Upload</p>
                         </div>
-                        <input type="file" id="profileImage" accept="image/*" className="hidden" onChange={(e)=>setimg(e.target.files[0])} />
+                        <input type="file" id="profileImage" accept="image/*" className="hidden" onChange={handleImageChange}  />
                     </label>
                 </div>
                 <form onSubmit={handleSubmit} className="w-full py-3 flex flex-col">
