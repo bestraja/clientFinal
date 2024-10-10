@@ -3,7 +3,7 @@ import axios from 'axios';
 import SignupImage from "../asset/login-animation.gif";
 import { BiShow, BiHide } from "react-icons/bi";
 import { Link,useNavigate  } from 'react-router-dom';
-
+import { toast } from "react-hot-toast";
 
 function Signup()
  {
@@ -47,9 +47,20 @@ function Signup()
         
 
         console.log(Data)
+        try {
              const res = await  axios.post("http://localhost:5050/api/user/signup",datasignup)
              console.log(res)
-             navigate("/login");
+            toast(res.data.msg)
+             navigate("/login");}
+
+             catch (error) {
+                if (error.response && error.response.data) {
+                 
+                    toast(error.response.data.msg || 'Une erreur est survenue.');
+                } else {
+                    toast('Erreur de connexion.');
+                }
+            }
       };
     return (
         <div className="p-3 md:p-4">

@@ -2,9 +2,13 @@
 import React, { useState } from 'react';
 import SignupImage from "../asset/login-animation.gif";
 import { BiShow, BiHide } from "react-icons/bi";
-import { Link } from 'react-router-dom';
+import { Link ,useNavigate } from 'react-router-dom';
+import { toast } from "react-hot-toast";
+import axios from 'axios';
 function Login() 
+
 {
+    const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
     const handleShowPassword = () => {
         setShowPassword(prev => !prev);
@@ -12,14 +16,14 @@ function Login()
 
    
 
-    const [data, setData] = useState({
+    const [Data, setData] = useState({
         
         email: "",
         password: "",
        
     });
 
-    console.log(data);
+    console.log(Data);
 
     const handleOnChange = (e) => {
         const { name, value } = e.target;
@@ -28,19 +32,29 @@ function Login()
             [name]: value,
         }));
     };
-    const handlsubmit = async (e) =>
-     {
-        e.preventDefault()
-        const {  email, password } = data;
-        if ( email && password ) 
-        {     
-            alert('succefuly');
-          }
-    else
-    {
-        alert('Please insert correct information');
-    }
-     }
+    const handleSubmit = async(e) => {
+        e.preventDefault();
+        
+       
+           
+        
+
+        console.log(Data)
+        try {
+             const res = await  axios.post("http://localhost:5050/api/user/login",Data)
+             console.log(res)
+            toast(res.data.msg)
+            navigate("/");}
+
+             catch (error) {
+                if (error.response && error.response.data) {
+                 
+                    toast(error.response.data.msg || 'Une erreur est survenue.');
+                } else {
+                    toast('Erreur de connexion.');
+                }
+            }
+      };
   return (
     <div className="p-3 md:p-4">
     <div className="w-full max-w-sm bg-white m-auto flex flex-col p-4">
@@ -48,7 +62,7 @@ function Login()
             <img src={SignupImage} className="w-full h-full" alt='' />
         </div>
         <h2 className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-orange-400 pt-7 text-center text-3xl font-bold">Welcom </h2>
-        <form onSubmit={handlsubmit} className="w-full py-3 flex flex-col">
+        <form onSubmit={handleSubmit} className="w-full py-3 flex flex-col">
            
            
             <label htmlFor="email">Email</label>
@@ -56,7 +70,7 @@ function Login()
                 type="email"
                 id="email"
                 name="email"
-                value={data.email}
+                value={Data.email}
                 onChange={handleOnChange}
                 className="mt-1 mb-2 w-full bg-slate-200 px-2 py-1 rounded focus-within:outline-orange-300"
             />
@@ -67,7 +81,7 @@ function Login()
                     type={showPassword ? 'text' : 'password'}
                     id="password"
                     name="password"
-                    value={data.password}
+                    value={Data.password}
                     onChange={handleOnChange}
                     className="w-full bg-slate-200 border-none outline-none"
                 />
