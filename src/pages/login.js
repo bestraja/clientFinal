@@ -5,10 +5,17 @@ import { BiShow, BiHide } from "react-icons/bi";
 import { Link ,useNavigate } from 'react-router-dom';
 import { toast } from "react-hot-toast";
 import axios from 'axios';
+import { useDispatch, useSelector } from "react-redux";
+import { loginRedux } from "../redux/userSlice";
 function Login() 
 
 {
     const navigate = useNavigate();
+   const userData = useSelector(state => state)
+    console.log(userData)
+    const dispatch = useDispatch()
+  
+  
   const [showPassword, setShowPassword] = useState(false);
     const handleShowPassword = () => {
         setShowPassword(prev => !prev);
@@ -44,6 +51,7 @@ function Login()
              const res = await  axios.post("http://localhost:5050/api/user/login",Data)
              console.log(res)
             toast(res.data.msg)
+            dispatch(loginRedux(res.data))
             navigate("/");}
 
              catch (error) {
