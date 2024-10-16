@@ -28,7 +28,7 @@ function Header() {
                 <Link to={""}>
                     <div className="h-16 flex  flex-row ">
                         <img src={logo} className="h-full" alt='logo' />
-                        <h1 className='text-orange-400 mt-5'>The Fast One</h1>
+                        <h1 className='text-orange-400 mt-5'>Deliveroo</h1>
                     </div>
                 </Link>
                 <div className=' flex items-center gap-4 md:gap-7'>
@@ -47,14 +47,23 @@ function Header() {
                     <div className='text-slate-600 '  onClick={handleShowMenu} >
                     <div className="text-3xl cursor-pointer w-8 h-8 rounded-full overflow-hidden drop-shadow-md">
               {userData.image ? (
-                <img src={userData.image} className="h-full w-full" />
+                <img src={userData.image} className="h-full w-full" alt="" />
               ) : (
                 <HiOutlineUserCircle />
               )}
             </div>
             {showMenu && (
-                            <div className='absolute right-2 bg-white py-2 shadow drop-shadow-md flex flex-col min-w-[120px] text-center'>
-                                <Link to='newproduct' className='whitespace-nowrap cursor-pointer'>New Product</Link>
+                             <div className="absolute right-2 bg-white py-2  shadow drop-shadow-md flex flex-col min-w-[120px] text-center">
+                             {userData.email === process.env.REACT_APP_ADMIN_EMAIL && (
+                               <Link
+                                 to={"newproduct"}
+                                 className="whitespace-nowrap cursor-pointer px-2"
+                               >
+                                 New product
+                               </Link>
+                             )}
+             
+                                
                                 {userData.image ? (
                                     <p className="cursor-pointer text-white px-2 bg-red-500" onClick={handleLogout}>
                                         Logout ({userData.firstname})
