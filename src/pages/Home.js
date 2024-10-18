@@ -1,70 +1,88 @@
-import React from 'react'
-import background from '../asset/im1.png'
-
-
+import React, { useRef } from 'react';
+import image from '../asset/im2.png';
+import HelthyCard from '../components/HelthyCard';
+import { useSelector } from 'react-redux';
+import { GrPrevious, GrNext } from "react-icons/gr";
+import diet from '../asset/hethy.png'
 function Home() {
+  const productData=useSelector((state)=>state.product.productList)
+  const cartlistHelthy=productData.filter((el)=>el.category ==="Diet",[])
+  console.log(cartlistHelthy)
+
+  const slideProductRef = useRef();
+  const nextProduct = () => {
+    slideProductRef.current.scrollLeft += 200;
+  };
+  const preveProduct = () => {
+    slideProductRef.current.scrollLeft -= 200;
+  };
 
   return (
     <>
-      <div className="p-2 md:p-0.5">
-        <div className="md:flex gap-2 py-2">
-          <div
-            className="md:w-full h"
-            style={{
-              backgroundImage: `url(${background})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              padding: '20px', // Ajustez le rembourrage selon vos besoins
-              color: 'white', // Changez la couleur du texte pour une meilleure visibilité
-              height: '450px',
-            }}
-          >
-            <h2 className="text-4xl md:text-7xl font-bold py-3">
-              The Fastest Delivery in{" "} <br />
-              <span className="text-orange-600">Your Home</span>
+      <div className="p-2 md:p-0.5 bg-white">
+        <section className="md:flex gap-2 py-2 mt-6">
+          <div className="md:w-1/2 flex flex-col justify-center h-auto">
+            <h2 className="text-xl md:text-xl font-bold py-3 ml-11 text-yellow-500">
+              It's time to eat...!
             </h2>
-            <p className="py-3 text-xl">
-              Deliveroo offers a seamless food delivery experience,<br />
-              connecting customers with a diverse selection of restaurants <br />
-              and cuisines right at their fingertips. Whether you're craving comfort food, <br />
-              healthy meals, or international dishes, our platform makes it easy to order <br />
-              and enjoy delicious food from the comfort of your home or office.
-            </p>
-            <button className="font-bold bg-orange-500 text-slate-200 ml-14 px-9 py-2 rounded-md">
+            <h2 className="text-xl md:text-xl font-bold py-3 ml-11">
+              You don't have the wish to get out.
+            </h2>
+            <h1 className="text-xl md:text-xl font-bold py-3 ml-14 text-yellow-500">Deliveroo.com</h1>
+            <h2 className="text-xl md:text-xl font-bold ml-11">
+              in your service
+            </h2>
+            <button
+              className="font-bold bg-yellow-500 mt-8 text-white ml-4 px-2 py-2 rounded-lg hover:bg-orange-600 transition duration-300"
+              aria-label="Order Now"
+            >
               Order Now
             </button>
           </div>
+          <div className="md:w-1/2 flex justify-center items-center">
+            <img src={image} alt="Delicious food delivery" className="max-w-full h-auto" />
+          </div>
+        </section>
 
+        <section className='mt-6 ml-6'>
+          <div className="flex w-full items-center mt-4">
+          <div className='flex items-center gap-4 p-4  '>
+    <img src={diet} className="h-16 w-16 object-contain" alt='Diet Food Logo' />
+    <h2 className="font-bold text-3xl text-yellow-600 ">
+        Diet Food
+    </h2>
+</div>
+            <div className="ml-auto flex gap-4">
+            <button
+              onClick={preveProduct}
+              className="bg-slate-300 hover:bg-slate-400 text-lg  p-1 rounded"
+            >
+              <GrPrevious />
+            </button>
+            <button
+              onClick={nextProduct}
+              className="bg-slate-300 hover:bg-slate-400 text-lg p-1 rounded  "
+            >
+              <GrNext />
+            </button>
+          </div>
+            </div>
+
+
+
+
+            <div className='flex gap-5 overflow-scroll scrollbar-none scroll-smooth' ref={slideProductRef}>
+            {cartlistHelthy && cartlistHelthy.map((el)=>  <HelthyCard  key={el._id} el={el}  />) }
           
-        </div>
-         
-
-         <div className=''>
-        <div className="flex w-full items-center">
-          <h2 className="font-bold text-2xl text-slate-800 mb-4">
-            Fresh Vegetables
-          </h2>
+           
           </div>
-          </div>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
+        </section>
+        <div className='flex items-center gap-4 p-4  '>
+    <img src={diet} className="h-16 w-16 object-contain" alt='Diet Food Logo' />
+    <h2 className="font-bold text-3xl text-yellow-600 ">
+    Our Dishes
+    </h2>
+</div>
       </div>
     </>
   );
