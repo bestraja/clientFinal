@@ -84,8 +84,8 @@ function Newproduct() {
        
 <label htmlFor='category' >Category</label>
         <select className='bg-slate-200 p-1 my-1' id='category' name='category' onChange={handleOnChange} value={data.category}  >
-          <option value={"other"}>select category</option>
-          <option value={"fruits"}>Fruits</option>
+          <option value={"other"} >select category</option>
+          <option value={"fruits"} >Fruits</option>
           <option value={"Diet"}>Diet</option>
           <option value={"Dishes"}>Dishes</option>
           <option value={"BreakFast"}>BreakFast</option>
