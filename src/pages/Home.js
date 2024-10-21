@@ -98,7 +98,12 @@ const handleShowAll = () => {
 
 
             <div className='flex min-h-48 gap-5 overflow-scroll scrollbar-none scroll-smooth' ref={slideProductRef}>
-            {cartlistHelthy && cartlistHelthy.map((el)=>  <CardFeature key={el._id} el={el}  />) }
+            {cartlistHelthy && cartlistHelthy.map((el)=>  <CardFeature  key={el._id+"Diet"}
+                    id={el._id}
+                    name={el.name}
+                    category={el.category}
+                    price={el.price}
+                    file={el.file}  />) }
           
            
           </div>
@@ -127,7 +132,12 @@ const handleShowAll = () => {
  <div className=' flex flex-wrap mt-8 mx-4 gap-4'>
 
 {
-  Datafilter.map(el=>{return (<CardFeature key={el._id} el={el}  />)})
+  Datafilter.map(el=>{return (<CardFeature  key={el._id}
+    id={el._id}
+    file={el.file}
+    name={el.name}
+    category={el.category}
+    price={el.price}  />)})
 }
  </div>
       </div>
