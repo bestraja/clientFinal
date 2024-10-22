@@ -10,7 +10,7 @@ import { toast } from "react-hot-toast";
 
 function Header() {
     const userData = useSelector((state) => state.user);
-    console.log(userData.image);
+    const cartItemNumber = useSelector((state)=>state.product.cartItem)
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
     const handleShowMenu = () => {
@@ -40,10 +40,11 @@ function Header() {
                     </nav>
 
                     <div className='text-2xl text- relative '>
-                        <ImCart />
-                        <div className='absolute -top-3 -right-0 text-white bg-red-500 h-4 w-4 rounded-full m-0 p-0 text-sm text-center'>0</div>
-
+                       <Link to={"card"}><ImCart /> 
+                        <div className='absolute -top-3 -right-0 text-white bg-red-500 h-4 w-4 rounded-full m-0 p-0 text-sm text-center'>  {cartItemNumber.length}</div>
+                        </Link>
                     </div>
+                    
                     <div className='text-slate-600 '  onClick={handleShowMenu} >
                     <div className="text-3xl cursor-pointer w-8 h-8 rounded-full overflow-hidden drop-shadow-md">
               {userData.image ? (

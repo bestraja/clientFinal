@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { useDispatch ,useSelector} from 'react-redux';
 import { setDataProduct } from "./redux/productSlide";
+import Footer from "./components/Footer";
 function App() {
  
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ function App() {
         <main className="pt-16 bg-slate-100 min-h-[calc(100vh)]">
           <Outlet />
         </main>
+        <Footer />
       </div>
      
       

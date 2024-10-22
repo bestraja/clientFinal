@@ -64,7 +64,7 @@ function Login()
             }
       };
   return (
-    <div className="p-3 md:p-4">
+    <div className="p-3 md:p-4 mt-2">
     <div className="w-full max-w-sm bg-white m-auto flex flex-col p-4">
         <div className='w-20 h-20 overflow-hidden rounded-full drop-shadow-md shadow-md m-auto relative'>
             <img src={SignupImage} className="w-full h-full" alt='' />

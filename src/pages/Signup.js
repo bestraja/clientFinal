@@ -5,6 +5,7 @@ import { BiShow, BiHide } from "react-icons/bi";
 import { Link,useNavigate  } from 'react-router-dom';
 import { toast } from "react-hot-toast";
 
+
 function Signup()
  {
    const navigate = useNavigate();
@@ -63,8 +64,10 @@ function Signup()
             }
       };
     return (
-        <div className="p-3 md:p-4">
-            <div className="w-full max-w-sm bg-white m-auto flex flex-col p-4">
+        <>
+        <div className="p-3 md:p-4 flex mt-5  bg-white justify-center items-center ">
+           
+            <div className="w-full max-w-sm bg-white  flex flex-col p-4 border border-yellow-400">
                 <div className='w-20 h-20 overflow-hidden rounded-full drop-shadow-md shadow-md m-auto relative'>
                     <img src={img ? img : SignupImage} className="w-full h-full" alt='' />
                     <label htmlFor="profileImage">
@@ -143,6 +146,7 @@ function Signup()
                 </p>
             </div>
         </div>
+        </>
     );
 }
 

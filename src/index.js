@@ -13,6 +13,8 @@ import Newproduct from './pages/Newproduct';
 import Signup from './pages/Signup';
 import { store } from "./redux/index"
 import { Provider } from "react-redux";
+import Card from './pages/Card';
+
 
 
 
@@ -26,6 +28,8 @@ const router = createBrowserRouter(createRoutesFromElements(
    <Route path="login" element={<Login/>} />
    <Route path="newproduct" element={<Newproduct/>} />
    <Route path="signup" element={<Signup />} />
+   <Route path="card" element={<Card/>} />
+  
   </Route>
 ));
 const root = ReactDOM.createRoot(document.getElementById('root'));
