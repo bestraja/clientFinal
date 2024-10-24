@@ -1,12 +1,25 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice , createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-hot-toast";
-
+import axios from "axios";
 const initialState = {
   productList: [],
   cartItem: [],
   
 };
-
+ 
+export const deleteProduct = createAsyncThunk(
+  "product/deleteProduct",
+  async (id, { dispatch }) => {
+    try {
+      await axios.delete(`http://localhost:5050/api/product/${id}`); // Update with your API endpoint
+      dispatch(removeProductFromList(id)); // Dispatch an action to remove from state
+      toast.success("Product deleted successfully!");
+    } catch (error) {
+      toast.error("Failed to delete the product.");
+    }
+  }
+);
+   
 export const productSlice = createSlice({
   name: "product",
   initialState,
@@ -14,6 +27,26 @@ export const productSlice = createSlice({
     setDataProduct: (state, action) => {
       state.productList = [...action.payload];
     },
+    editCard: (state, action) => {
+      const index = state.productList.findIndex(el => el._id === action.payload.id);
+      
+      if (index !== -1) {
+        state.productList[index] = {
+          ...state.productList[index],
+          ...action.payload.edit, // Spread the edit object directly
+        };
+        toast.success("Product updated successfully!"); // Optional toast for user feedback
+      } else {
+        toast.error("Product not found!"); // Optional error handling
+      }
+    },
+    removeProductFromList: (state, action) => {
+      const index = state.productList.findIndex((el) => el._id === action.payload);
+      if (index !== -1) {
+        state.productList.splice(index, 1);
+      }
+    },
+
     addCartItem: (state, action) => {
       const check = state.cartItem.some((el) => el._id === action.payload._id);
       if (check) {
@@ -62,6 +95,8 @@ export const productSlice = createSlice({
 
 export const {
   setDataProduct,
+  editCard,
+  removeProductFromList,
   addCartItem,
   deleteCartItem,
   increaseQty,

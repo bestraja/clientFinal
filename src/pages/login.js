@@ -50,7 +50,7 @@ function Login()
         try {
              const res = await  axios.post("http://localhost:5050/api/user/login",Data)
              console.log(res)
-            toast(res.data.msg)
+            toast('Welcom agin')
             dispatch(loginRedux(res.data))
             navigate("/");}
 

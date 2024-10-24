@@ -14,6 +14,8 @@ import Signup from './pages/Signup';
 import { store } from "./redux/index"
 import { Provider } from "react-redux";
 import Card from './pages/Card';
+import Admin from './pages/Admin';
+import FormulaireEdite from './components/FormulaireEdite';
 
 
 
@@ -29,6 +31,8 @@ const router = createBrowserRouter(createRoutesFromElements(
    <Route path="newproduct" element={<Newproduct/>} />
    <Route path="signup" element={<Signup />} />
    <Route path="card" element={<Card/>} />
+   <Route path="admin" element={<Admin/>} />
+   <Route path="edit/:id" element={<FormulaireEdite/>} />
   
   </Route>
 ));
