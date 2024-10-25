@@ -31,7 +31,7 @@ function Menu() {
           <p className=" font-bold md:text-2xl text-red-600">
             
             <span>{productDisplay.price}</span>
-             <span className="text-red-500 ">$</span>
+             <span className="text-red-500 ">€</span>
           </p>
           <div className="flex gap-3">
           <button  className="bg-yellow-500 py-1 mt-2 rounded hover:bg-yellow-600 min-w-[100px]">Buy</button>

@@ -2,8 +2,14 @@ import React from "react";
 import { useSelector } from "react-redux";
 import emptyCartImage from "../asset/empty.gif"
 import Cardproduct from "../components/Cardproduct";
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import {loadStripe} from '@stripe/stripe-js';
+import axios from "axios";
 
 function Card() {
+  const navigate = useNavigate()
+  const user = useSelector(state => state.user)
   const productCartItem = useSelector((state) => state.product.cartItem);
   
   const totalPrice = productCartItem.reduce(
@@ -14,7 +20,38 @@ function Card() {
     (acc, curr) => acc + parseInt(curr.qty),
     0
   );
- 
+
+  const handlePayment = async () => {
+    if (user.email) {
+      const stripePromise = loadStripe('pk_test_51QDXyXAS5sdefIl1BFL9ORUMooncQTwMrov3ZB8xshw3JCYZTvsnRz4lt0mUGgendGljPsS81IQl8IFzEXQ8rNgM00bECzGAP2');
+
+    
+      
+      try {
+        const res = await axios.post("http://localhost:5050/create-checkout-session", productCartItem);
+  
+        // Check for server error
+        if (res.status === 500) return; 
+  
+        const data = res.data;
+        console.log(data);
+  
+        toast("Redirecting to payment gateway...");
+        const stripe = await stripePromise; // Ensure stripe is initialized
+        await stripe.redirectToCheckout({ sessionId: data.id }); // Ensure sessionId is accessed correctly
+  
+      } catch (error) {
+        console.error('Error during payment processing:', error);
+        toast("Payment processing failed. Please try again.");
+      }
+    } else {
+      toast("You are not logged in!");
+     
+        navigate("/login");
+      
+    }
+  };
+  
   return (
     < div className="bg-white">
     
@@ -53,10 +90,10 @@ function Card() {
             <div className="flex w-full py-2 text-lg border-b">
               <p>Total Price</p>
               <p className="ml-auto w-32 font-bold">
-              {totalPrice}<span className="text-red-500">$</span>
+              {totalPrice}<span className="text-red-500">€</span>
               </p>
             </div>
-            <button className="bg-red-500 w-full text-lg font-bold py-2 text-white">
+            <button className="bg-red-500 w-full text-lg font-bold py-2 text-white" onClick={handlePayment}>
               Payment
             </button>
           </div>

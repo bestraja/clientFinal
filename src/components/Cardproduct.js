@@ -25,7 +25,7 @@ function Cardproduct  ({ id, name, file, category, qty, total, price })
         <p className=" text-slate-500  font-medium ">{category}</p>
         <p className=" font-bold text-base">
         <span>{price}</span>
-          <span className="text-red-500 ">$</span>
+          <span className="text-red-500 ">€</span>
           
         </p>
         <div className="flex justify-between ">
@@ -43,7 +43,7 @@ function Cardproduct  ({ id, name, file, category, qty, total, price })
           </div>
           <div className="flex items-center gap-2 font-bold text-slate-700">
             <p>Total :</p>
-            <p>{total}<span className="text-red-500">$</span></p>
+            <p>{total}<span className="text-red-500">€</span></p>
           </div>
         </div>
       </div>

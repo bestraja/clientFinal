@@ -16,6 +16,8 @@ import { Provider } from "react-redux";
 import Card from './pages/Card';
 import Admin from './pages/Admin';
 import FormulaireEdite from './components/FormulaireEdite';
+import Succes from './pages/Succes';
+import Cancel from './pages/Cancel';
 
 
 
@@ -33,6 +35,8 @@ const router = createBrowserRouter(createRoutesFromElements(
    <Route path="card" element={<Card/>} />
    <Route path="admin" element={<Admin/>} />
    <Route path="edit/:id" element={<FormulaireEdite/>} />
+   <Route path="success" element={<Succes/>} />
+   <Route path="cancel" element={<Cancel/>}/>
   
   </Route>
 ));

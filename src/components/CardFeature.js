@@ -29,7 +29,7 @@ function CardFeature({ file, name, price, category,id }) {
         <p className="text-red-700 font-medium">{category}</p>
         <p className="font-bold">
           <span>{price}</span>
-          <span className="text-red-500">$</span>
+          <span className="text-red-500">€</span>
         </p>
       </Link>
       <button className="bg-yellow-500 py-1 mt-2 rounded hover:bg-yellow-600 w-full" onClick={handleAddCartProduct}>
