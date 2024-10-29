@@ -70,7 +70,7 @@ function Login()
         <div className='w-20 h-20 overflow-hidden rounded-full drop-shadow-md shadow-md m-auto relative'>
             <img src={SignupImage} className="w-full h-full" alt='' />
         </div>
-        <h2 className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-orange-400 pt-7 text-center text-3xl font-bold">Welcom </h2>
+        <h2 className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-orange-400 pt-7 text-center text-3xl font-bold">Welcome </h2>
         <form onSubmit={handleSubmit} className="w-full py-3 flex flex-col">
            
            

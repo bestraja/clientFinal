@@ -33,11 +33,11 @@ export const productSlice = createSlice({
       if (index !== -1) {
         state.productList[index] = {
           ...state.productList[index],
-          ...action.payload.edit, // Spread the edit object directly
+          ...action.payload.edit, 
         };
-        toast.success("Product updated successfully!"); // Optional toast for user feedback
+        toast.success("Product updated successfully!"); 
       } else {
-        toast.error("Product not found!"); // Optional error handling
+        toast.error("Product not found!"); 
       }
     },
     removeProductFromList: (state, action) => {

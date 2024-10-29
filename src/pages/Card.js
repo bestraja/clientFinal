@@ -10,7 +10,9 @@ import axios from "axios";
 function Card() {
   const navigate = useNavigate()
   const user = useSelector(state => state.user)
+  console.log(user)
   const productCartItem = useSelector((state) => state.product.cartItem);
+  console.log(productCartItem)
   
   const totalPrice = productCartItem.reduce(
     (acc, curr) => acc + parseInt(curr.total),
@@ -28,11 +30,30 @@ function Card() {
     
       
       try {
+       // const orderData = {
+         // items: productCartItem.map(item => ({
+          //  id: item._id,
+          //  name: item.name,
+           // price: item.price,
+           // quantity: item.qty,
+          //  total: item.total,
+         // })),
+         // totalPrice: totalPrice,
+         // totalQty: totalQty,
+         // user: {
+           // email: user.email,
+          //  address:user.address,
+          //  tel:user.telephone,
+        //  }
+        //};
+       // console.log("Order Data:", orderData);
+
         const res = await axios.post("http://localhost:5050/create-checkout-session", productCartItem);
   
-        // Check for server error
+     
         if (res.status === 500) return; 
-  
+        //await axios.post("http://localhost:5050/api/orders", orderData);
+
         const data = res.data;
         console.log(data);
   

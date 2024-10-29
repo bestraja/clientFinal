@@ -33,10 +33,11 @@ function Header() {
                 </Link>
                 <div className=' flex items-center gap-4 md:gap-7'>
                     <nav className='gap-4 md:gap-6 text-base md:text-lg hidden md:flex text-white'>
-                        <Link to={""}>Home</Link>
+                        <Link to={""}>Welcome</Link>
+                        <Link to={"home"}>Home</Link>
                         <Link to={"menu/670e719f56803cf90c773fa4"}>Menu</Link>
                         <Link to={"about"}>About</Link>
-                        <Link to={"contact"}>Contact</Link>
+                        
                     </nav>
 
                     <div className='text-2xl text- relative '>
@@ -73,10 +74,11 @@ function Header() {
                                     <Link to='login' className='whitespace-nowrap cursor-pointer'>Login</Link>
                                 )}
                                 <nav className='text-base md:text-lg flex flex-col md:hidden'>
-                        <Link to={""}  className="px-2 py-1  hover:bg-yellow-500">Home</Link>
+                        <Link to={""}  className="px-2 py-1  hover:bg-yellow-500">welcome</Link>
+                        <Link to={"home"}>Home</Link>
                         <Link to={"menu/670e719f56803cf90c773fa4"}  className="px-2 py-1  hover:bg-yellow-500">Menu</Link>
                         <Link to={"about"}  className="px-2 py-1">About</Link>
-                        <Link to={"contact"}  className="px-2 py-1">Contact</Link>
+                       
                     </nav>
                             </div>
                         )}
