@@ -30,37 +30,39 @@ function Card() {
     
       
       try {
-       // const orderData = {
-         // items: productCartItem.map(item => ({
-          //  id: item._id,
-          //  name: item.name,
-           // price: item.price,
-           // quantity: item.qty,
-          //  total: item.total,
-         // })),
-         // totalPrice: totalPrice,
-         // totalQty: totalQty,
-         // user: {
-           // email: user.email,
-          //  address:user.address,
-          //  tel:user.telephone,
-        //  }
-        //};
-       // console.log("Order Data:", orderData);
-
+        const orderData = {
+          items: productCartItem.map(item => ({
+          id: item._id,
+          name: item.name,
+            price: item.price,
+            quantity: item.qty,
+            total: item.total,
+          })),
+          totalPrice: totalPrice,
+         totalQty: totalQty,
+          user: {
+            email: user.email,
+            address:user.address,
+            tel:user.telephone,
+          }
+        };
+       
+        await axios.post("http://localhost:5050/api/orders", orderData);
         const res = await axios.post("http://localhost:5050/create-checkout-session", productCartItem);
   
      
         if (res.status === 500) return; 
-        //await axios.post("http://localhost:5050/api/orders", orderData);
+      
 
         const data = res.data;
-        console.log(data);
+        
   
         toast("Redirecting to payment gateway...");
         const stripe = await stripePromise; // Ensure stripe is initialized
         await stripe.redirectToCheckout({ sessionId: data.id }); // Ensure sessionId is accessed correctly
-  
+        console.log("Order Data:", orderData);
+        
+
       } catch (error) {
         console.error('Error during payment processing:', error);
         toast("Payment processing failed. Please try again.");
@@ -74,7 +76,7 @@ function Card() {
   };
   
   return (
-    < div className="bg-white">
+    < div className="bg-white mt-4">
     
       <div className="p-2 md:p-4 bg-white">
         <h2 className="text-lg md:text-2xl font-bold text-orange-600">

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import FormulaireEdite from './FormulaireEdite';
 import { useDispatch } from 'react-redux';
-import { deleteProduct } from "../redux/productSlide"
+import { deleteProduct } from "../redux/productSlide";
 
 function Edit({ file, name, price, category, id, description }) {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const [isEditing, setIsEditing] = useState(false);
 
     const handleEditClick = () => {
@@ -14,14 +14,16 @@ function Edit({ file, name, price, category, id, description }) {
     const handleCloseEdit = () => {
         setIsEditing(false);
     };
+
     const handleDelete = (id) => {
         dispatch(deleteProduct(id));
-      };
+    };
+
     return (
-        <div className=" flex flex-col">
+        <div className="flex flex-col">
             {isEditing && (
                 <div className="fixed inset-0 z-50 flex justify-center items-center bg-black bg-opacity-50">
-                    <div className="bg-white rounded-lg shadow-lg p-5">
+                    <div className="bg-white rounded-lg shadow-lg p-5 max-w-lg w-full">
                         <FormulaireEdite
                             file={file}
                             name={name}
@@ -40,7 +42,7 @@ function Edit({ file, name, price, category, id, description }) {
                     </div>
                 </div>
             )}
-            <div className="w-full min-w-[300px] max-w-[300px] bg-white py-5 px-4 cursor-pointer flex flex-col border border-orange-500 shadow-lg shadow-orange-300 rounded-lg">
+            <div className="w-full min-w-[300px] max-w-sm bg-white py-5 px-4 cursor-pointer flex flex-col border border-orange-500 shadow-lg shadow-orange-300 rounded-lg">
                 <div className="h-28 flex flex-col justify-center items-center">
                     <img src={file} alt={name} className="h-full object-cover rounded-md" />
                 </div>
@@ -58,14 +60,14 @@ function Edit({ file, name, price, category, id, description }) {
                     <p className="font-medium">Description:</p>
                     <p>{description}</p>
                 </div>
-                <div className="flex gap-3">
+                <div className="flex flex-col sm:flex-row gap-3">
                     <button
                         className="bg-yellow-500 py-1 mt-2 rounded hover:bg-yellow-600 min-w-[100px]"
                         onClick={handleEditClick}
                     >
                         Edit
                     </button>
-                    <button className="bg-yellow-500 py-1 mt-2 rounded hover:bg-yellow-600 min-w-[100px]"  onClick={() => handleDelete(id)}>
+                    <button className="bg-yellow-500 py-1 mt-2 rounded hover:bg-yellow-600 min-w-[100px]" onClick={() => handleDelete(id)}>
                         Delete
                     </button>
                 </div>
