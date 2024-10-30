@@ -52,7 +52,7 @@ function Signup() {
         datasignup.append("file", Data.file);
 
         try {
-            const res = await axios.post("http://localhost:5050/api/user/signup", datasignup);
+            const res = await axios.post(`${process.env.REACT_APP_SERVER_DOMAIN}/api/user/signup`, datasignup);
             toast(res.data.msg);
             navigate("/login");
         } catch (error) {

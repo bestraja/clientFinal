@@ -28,7 +28,7 @@ const handleFilterProduct = (category) => {
   });
 };
 const handleShowAll = () => {
-  setDatafilter(productData); // Réinitialise pour afficher tous les produits
+  setDatafilter(productData); 
 };
   return (
     <div>

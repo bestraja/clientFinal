@@ -44,7 +44,9 @@ function Newproduct() {
     newproduct.append("file", data.file);
 
     try {
-      const res = await axios.post("http://localhost:5050/api/product/uploadProduct", newproduct);
+      const res = await axios.post("http://localhost:5050/api/product/uploadProduct", newproduct,{
+        withCredentials: true 
+    });
       
       // Clear form fields
       setData({

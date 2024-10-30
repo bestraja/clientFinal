@@ -51,7 +51,7 @@ function FormulaireEdite({ file, name, price,id, category, description, onClose 
         newproduct.append("file", formData.file);
     
         try {
-            const response= await axios.patch(`http://localhost:5050/api/product/${id}`, newproduct);
+            const response= await axios.patch(`${process.env.REACT_APP_SERVER_DOMAIN}/api/product/${id}`, newproduct);
            
             dispatch(editCard({ id, edit: formData }));
             toast.success('Product update!');

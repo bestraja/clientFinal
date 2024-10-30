@@ -11,8 +11,8 @@ export const deleteProduct = createAsyncThunk(
   "product/deleteProduct",
   async (id, { dispatch }) => {
     try {
-      await axios.delete(`http://localhost:5050/api/product/${id}`); // Update with your API endpoint
-      dispatch(removeProductFromList(id)); // Dispatch an action to remove from state
+      await axios.delete(`${process.env.REACT_APP_SERVER_DOMAIN}/api/product/${id}`);
+      dispatch(removeProductFromList(id)); 
       toast.success("Product deleted successfully!");
     } catch (error) {
       toast.error("Failed to delete the product.");

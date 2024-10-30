@@ -13,7 +13,6 @@ function Login()
 {
     const navigate = useNavigate();
    const userData = useSelector(state => state)
-    console.log(userData)
     const dispatch = useDispatch()
   
   
@@ -38,12 +37,15 @@ function Login()
             [name]: value,
         }));
     };
+    
     const handleSubmit = async(e) => {
         e.preventDefault();
         try {
-             const res = await  axios.post("http://localhost:5050/api/user/login",Data,{ 
+           
+            const res = await axios.post(`${process.env.REACT_APP_SERVER_DOMAIN}/api/user/login`, Data, {
                 withCredentials: true 
-             })
+            });
+            
              
             toast('Welcom agin')
             dispatch(loginRedux(res.data))

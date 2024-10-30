@@ -47,8 +47,8 @@ function Card() {
           }
         };
        
-        await axios.post("http://localhost:5050/api/orders", orderData);
-        const res = await axios.post("http://localhost:5050/create-checkout-session", productCartItem);
+        await axios.post(`${process.env.REACT_APP_SERVER_DOMAIN}/api/orders`, orderData);
+        const res = await axios.post(`${process.env.REACT_APP_SERVER_DOMAIN}/create-checkout-session`, productCartItem);
   
      
         if (res.status === 500) return; 
