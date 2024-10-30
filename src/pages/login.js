@@ -42,7 +42,7 @@ function Login()
         e.preventDefault();
         try {
            
-            const res = await axios.post(`${process.env.REACT_APP_SERVER_DOMAIN}/api/user/login`, Data, {
+            const res = await axios.post(`${process.env.REACT_APP_SERVER_DOMAIN}/api/user/login`,Data,{
                 withCredentials: true 
             });
             

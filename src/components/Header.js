@@ -61,7 +61,7 @@ function Header() {
                         </div>
                         {showMenu && (
                             <div className="absolute right-2 bg-white py-2 shadow drop-shadow-md flex flex-col min-w-[120px] text-center">
-                                {userData.email === process.env.REACT_APP_ADMIN_EMAIL && (
+                                {userData.email === 'amara.raja@gmail.com' && (
                                     <Link to={"admin"} className="whitespace-nowrap cursor-pointer px-2">Admin Panel</Link>
                                 )}
                                 {userData.image ? (
