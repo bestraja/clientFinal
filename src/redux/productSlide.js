@@ -11,7 +11,8 @@ export const deleteProduct = createAsyncThunk(
   "product/deleteProduct",
   async (id, { dispatch }) => {
     try {
-      await axios.delete(`${process.env.REACT_APP_SERVER_DOMAIN}/api/product/${id}`);
+      const token=document.cookie.split(';')[2].split('=')[1]
+      await axios.delete(`${process.env.REACT_APP_SERVER_DOMAIN}/api/product/${id}`,{ headers: { Authorization: `Bearer ${token}` } });
       dispatch(removeProductFromList(id)); 
       toast.success("Product deleted successfully!");
     } catch (error) {

@@ -44,9 +44,9 @@ function Newproduct() {
     newproduct.append("file", data.file);
 
     try {
-      const res = await axios.post("http://localhost:5050/api/product/uploadProduct", newproduct,{
-        withCredentials: true 
-    });
+      const token=document.cookie.split(';')[2].split('=')[1]
+    
+      const res = await axios.post(`${process.env.REACT_APP_SERVER_DOMAIN}/api/product/uploadProduct`, newproduct,{ headers: { Authorization: `Bearer ${token}` }});
       
       // Clear form fields
       setData({
