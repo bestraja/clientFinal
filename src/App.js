@@ -12,7 +12,7 @@ function App() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_SERVER_DOMAIN}api/product/listproduct`);
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_DOMAIN}/api/product/listproduct`);
         dispatch(setDataProduct(response.data));
       } catch (error) {
        
