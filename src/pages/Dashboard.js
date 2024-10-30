@@ -9,7 +9,7 @@ function Dashboard() {
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const response = await axios.get('http://localhost:5050/api/orders'); // Remplacez par votre endpoint
+                const response = await axios.get('http://localhost:5050/api/orders'); 
                 setOrders(response.data);
             } catch (err) {
                 setError(err.message);

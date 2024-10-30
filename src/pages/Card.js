@@ -10,9 +10,9 @@ import axios from "axios";
 function Card() {
   const navigate = useNavigate()
   const user = useSelector(state => state.user)
-  console.log(user)
+ 
   const productCartItem = useSelector((state) => state.product.cartItem);
-  console.log(productCartItem)
+ 
   
   const totalPrice = productCartItem.reduce(
     (acc, curr) => acc + parseInt(curr.total),
@@ -60,11 +60,11 @@ function Card() {
         toast("Redirecting to payment gateway...");
         const stripe = await stripePromise; // Ensure stripe is initialized
         await stripe.redirectToCheckout({ sessionId: data.id }); // Ensure sessionId is accessed correctly
-        console.log("Order Data:", orderData);
+       
         
 
       } catch (error) {
-        console.error('Error during payment processing:', error);
+        
         toast("Payment processing failed. Please try again.");
       }
     } else {
@@ -125,7 +125,7 @@ function Card() {
         : 
         <>
           <div className="flex w-full justify-center items-center flex-col">
-            <img src={emptyCartImage} className="w-full max-w-sm"/>
+            <img src={emptyCartImage} className="w-full max-w-sm" alt="" />
             <p className="text-red-600 text-3xl font-bold">Empty Cart</p>
           </div>
         </>

@@ -45,7 +45,7 @@ function Newproduct() {
 
     try {
       const res = await axios.post("http://localhost:5050/api/product/uploadProduct", newproduct);
-      console.log(res);
+      
       // Clear form fields
       setData({
         name: "",
@@ -57,12 +57,6 @@ function Newproduct() {
       setImg(""); // Clear the image preview
     } catch (error) {
      
-        if (error.response && error.response.data) {
-         
-            console.log(error.response.data.msg || 'Une erreur est survenue.');
-        } else {
-            console.log('Erreur de connexion.');
-        }
     }
   };
 

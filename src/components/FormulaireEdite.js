@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { editCard } from '../redux/productSlide';
 
@@ -52,13 +52,13 @@ function FormulaireEdite({ file, name, price,id, category, description, onClose 
     
         try {
             const response= await axios.patch(`http://localhost:5050/api/product/${id}`, newproduct);
-            console.log(response)
+           
             dispatch(editCard({ id, edit: formData }));
             toast.success('Product update!');
             onClose();
         } catch (error) {
             toast.error('Failed to update product!');
-            console.error(error);
+            
         }
     };
 

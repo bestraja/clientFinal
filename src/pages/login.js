@@ -31,8 +31,6 @@ function Login()
        
     });
 
-    console.log(Data);
-
     const handleOnChange = (e) => {
         const { name, value } = e.target;
         setData(prev => ({
@@ -42,15 +40,11 @@ function Login()
     };
     const handleSubmit = async(e) => {
         e.preventDefault();
-        
-       
-           
-        
-
-        console.log(Data)
         try {
-             const res = await  axios.post("http://localhost:5050/api/user/login",Data)
-             console.log(res)
+             const res = await  axios.post("http://localhost:5050/api/user/login",Data,{ 
+                withCredentials: true 
+             })
+             
             toast('Welcom agin')
             dispatch(loginRedux(res.data))
             navigate("/");}
